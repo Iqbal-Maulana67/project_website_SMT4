@@ -2,7 +2,7 @@
 
 ## About our project
 
-Projek yang kami buat adalah aplikasi manajemen bendahara pada sekolah SMK Darus Sholah yang berlokasikan di Kota Jember, projek kami menggunakan versi laravel 10.
+Projek yang kami buat adalah aplikasi manajemen bendahara pada sekolah SMK Darus Sholah yang berlokasikan di Kota Jember, projek kami menggunakan versi laravel Framework versi 9.
 
 Fitur-fitur yang kami sediakan pada projek kami adalah :
 
