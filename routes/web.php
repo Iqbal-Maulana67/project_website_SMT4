@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('layouts.index');
+})->name('dashboard');
+
+Route::get('/transaksi', function () {
+    return view('layouts.transaksi');
+})->name('transaksi');
+
+Route::get('/laporan', function () {
+    return view('layouts.laporan');
+})->name('laporan');
+
+Route::get('/detail_transaksi', function () {
+    return view('layouts.detail_transaksi');
+})->name('detail_transaksi');
