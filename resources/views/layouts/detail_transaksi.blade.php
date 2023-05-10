@@ -74,7 +74,7 @@
                             <th>Nama Tagihan</th>
                             <th>Harga Tagihan</th>
                             <th>Status Tagihan</th>
-                            <th>Aksi</th>
+                            <th>Pilih</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="form-group col-xl-12">
                         <label for="recipient-name" class="col-form-label">Masukkan Uang</label>
-                        <input type="text" class="form-control" id="txt_uang" name="txt_uang" value="0">
+                        <input type="text" class="form-control" id="txt_uang" name="txt_uang" value="0" >
                     </div>
                     <div class="form-group col-xl-12">
                         <label for="recipient-name" class="col-form-label">Kembalian</label>

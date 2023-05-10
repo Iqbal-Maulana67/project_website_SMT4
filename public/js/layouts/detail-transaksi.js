@@ -49,7 +49,6 @@
                 for (let i = 0; i < object_tagihan.length; i++) {
                     total_harga_tagihan = total_harga_tagihan + parseInt(reverseFormatNumber(object_tagihan[i].harga_tagihan));
                 }
-                console.log(total_harga_tagihan);
                 setTotalTagihan(total_harga_tagihan);            
             }else{
                 datatable.clear();
@@ -60,7 +59,8 @@
                             harga_tagihan : "NA"
                         }
                     ]
-                ).draw();                
+                ).draw();     
+                setTotalTagihan(0);           
             }
         });
     }

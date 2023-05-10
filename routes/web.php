@@ -28,3 +28,7 @@ Route::get('/laporan', function () {
 Route::get('/detail_transaksi', function () {
     return view('layouts.detail_transaksi');
 })->name('detail_transaksi');
+
+Route::get('/data_siswa', function () {
+    return view('layouts.data_siswa');
+})->name('data-siswa');
