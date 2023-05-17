@@ -49,10 +49,70 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- Edit Modal --}}
+                <div class="modal fade" id="editDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Ubah Data Jenis Tagihan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="table_admin.php" method="POST" id="modal-form-jenis-tagihan">
+                                    <input type="hidden" name="id_tagihan" id="id_tagihan">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Nama Tagihan</label>
+                                        <input type="text" class="form-control" id="nama_tagihan" name="nama_tagihan" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Jangka Waktu Tagihan</label>
+                                        <select class="custom-select" id="jangka_waktu" name="jangka_waktu" required>
+                                            <option selected value="">Jangka Waktu</option>
+                                            <option value="bulanan">Bulanan</option>
+                                            <option value="bebas">Bebas</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Simpan Data</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Delete Data Modal --}}
+                <div class="modal fade" id="deleteDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Hapus Data Jenis Tagihan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="table_admin.php" method="POST" id="modal-form-kelas">
+                                    <input type="hidden" name="id_kelas" id="id_kelas">
+                                    Apakah anda yakin untuk menghapus data ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-danger">Hapus Data</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered" id="table_jenis_tagihan" width="100%" cellspacing="0">
                         <thead>
-                            <th>ID Tagihan</th>
+                            <th>ID Jenis Tagihan</th>
                             <th>Nama Jenis Tagihan</th>
                             <th>Jangka Waktu Tagihan</th>
                             <th>Aksi</th>
@@ -63,8 +123,16 @@
                                 <td>NA</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-warning"><i class="fas fa-edit fa-sm"></i></button>
-                                        <button class="btn btn-danger"><i class="fas fa-trash fa-sm"></i></button>
+                                        <button class="btn btn-warning" id="buttonModal" data-toggle="modal" data-target="#editDataModal"
+                                            id-tagihan="123"
+                                            nama-jenis-tagihan="SPP"
+                                            jangka-waktu-tagihan="bulanan"
+                                        >
+                                            <i class="fas fa-pen fa-sm"></i>
+                                        </button>
+                                        <button class="btn btn-danger" id="" data-toggle="modal" data-target="#deleteDataModal">
+                                            <i class="fas fa-trash fa-sm"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>

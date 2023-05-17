@@ -62,7 +62,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-validasi">
+                                <form action="table_admin.php" method="POST" id="modal-form-admin">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Username</label>
                                         <input type="text" class="form-control" id="username" name="username" readonly>
@@ -123,7 +123,11 @@
                                 <td>NA</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-warning" id="buttonModal" data-toggle="modal" data-target="#editDataModal">
+                                        <button class="btn btn-warning" id="buttonModal" data-toggle="modal" data-target="#editDataModal"
+                                            username="maulana"
+                                            nama-admin="Iqbal Maulana"
+                                            password="123"
+                                        >
                                             <i class="fas fa-pen fa-sm"></i>
                                         </button>
                                         <button class="btn btn-danger" id="" data-toggle="modal" data-target="#deleteDataModal">
@@ -135,7 +139,7 @@
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </div>
 </div>

@@ -16,6 +16,31 @@
                 <div class="row float-right">
                     <a href=""><button class="btn btn-success mb-3 text-end mr-2"><i class="fa fa-plus mr-2"></i>Tambah data</button></a>
                 </div>
+
+                {{-- Delete Data Modal --}}
+                <div class="modal fade" id="deleteDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Hapus Data Kelas</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="table_admin.php" method="POST" id="modal-form-kelas">
+                                    <input type="hidden" name="id_kelas" id="id_kelas">
+                                    Apakah anda yakin untuk menghapus data ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-danger">Hapus Data</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered" id="table_siswa" width="100%" cellspacing="0">
                         <thead>
@@ -42,7 +67,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <button class="btn btn-warning"> <i class="fas fa-edit fa-sm"></i> </button>
-                                        <button class="btn btn-danger"><i class="fas fa-trash fa-sm"></i></button>
+                                        <button class="btn btn-danger" data-target="#deleteDataModal" data-toggle="modal"><i class="fas fa-trash fa-sm"></i></button>
                                     </div>
                                 </td>
                             </tr>
