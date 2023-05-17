@@ -139,8 +139,9 @@
     </div>
 </div>
 
-<script>
-    
-
-</script>
 @endsection
+
+@section('js-section')
+    <script src="js/layouts/detail-transaksi.js"></script>
+@endsection
+

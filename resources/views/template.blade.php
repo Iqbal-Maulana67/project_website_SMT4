@@ -12,16 +12,15 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -50,19 +49,46 @@
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('transaksi') }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#manajemen_pembayaran_nav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cash-register"></i>
+                    <span>Manajemen Pembayaran</span>
+                </a>
+                <div id="manajemen_pembayaran_nav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('transaksi') }}">Menu Pembayaran</a>
+                        <a class="collapse-item" href="{{  route('data-jenis-tagihan') }}">Validasi Pembayaran</a>
+                        <a class="collapse-item" href="{{  route('laporan-pembayaran') }}">Laporan Pembayaran</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#manajemen_tagihan_nav"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-archive"></i>
-                    <span>Transaksi</span></a>
+                    <span>Manajemen Tagihan</span>
+                </a>
+                <div id="manajemen_tagihan_nav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('data-tagihan') }}">Data Tagihan</a>
+                        <a class="collapse-item" href="{{  route('data-jenis-tagihan') }}">Data Jenis Tagihan</a>
+                    </div>
+                </div>
             </li>
+            
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Laporan</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('data-siswa') }}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Data Siswa</span></a>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#manajemen_siswa_nav"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Manajemen Siswa</span>
+                </a>
+                <div id="manajemen_siswa_nav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('data-siswa') }}">Data Siswa</a>
+                        <a class="collapse-item" href="{{  route('data-kelas') }}">Data Kelas</a>
+                    </div>
+                </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -325,17 +351,14 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
+    @yield('js-section')
     <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/layouts/detail-transaksi.js"></script>
-    <script src="js/layouts/data-siswa.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-
+    
 </body>
 
 </html>

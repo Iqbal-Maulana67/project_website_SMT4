@@ -1,0 +1,10 @@
+.data-siswa-toggle:hover {
+    border-bottom: 2px solid black;
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.data-siswa-toggle-active {
+    border-bottom: 2px solid black;
+    cursor: pointer;
+}

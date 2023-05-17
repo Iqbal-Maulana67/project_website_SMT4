@@ -32,3 +32,31 @@ Route::get('/detail_transaksi', function () {
 Route::get('/data_siswa', function () {
     return view('layouts.data_siswa');
 })->name('data-siswa');
+
+Route::get('/tambah_siswa', function(){
+    return view('layouts.tambah_siswa_page');
+});
+
+Route::get('/data-tagihan', function () {
+    return view('layouts.data_tagihan');
+})->name('data-tagihan');
+
+Route::get('/data-jenis-tagihan', function () {
+    return view('layouts.data_jenis_tagihan');
+})->name('data-jenis-tagihan');
+
+Route::get('/data-kelas', function () {
+    return view('layouts.data_kelas');
+})->name('data-kelas');
+
+Route::get('/laporan-pembayaran', function () {
+    return view('layouts.laporan_pembayaran');
+})->name('laporan-pembayaran');
+
+Route::get('/atur-tagihan', function() {
+    return view('layouts.atur_tagihan');
+})->name('atur-tagihan');
+
+Route::get('/dashboard', function() {
+    return view('dashboard');
+}); 
