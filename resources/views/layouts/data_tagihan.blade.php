@@ -10,7 +10,7 @@
 
         <div class="card shadow col-xl-12 mr-3">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Informasi Detail Tagihan</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Informasi Validasi Pembayaran</h6>
             </div>
             <div class="card-body p-3">
                 <div class="row float-right">

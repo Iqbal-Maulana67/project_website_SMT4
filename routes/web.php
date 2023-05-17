@@ -60,3 +60,11 @@ Route::get('/atur-tagihan', function() {
 Route::get('/dashboard', function() {
     return view('dashboard');
 }); 
+
+Route::get('/validasi-pembayaran', function(){
+    return view('layouts.validasi_pembayaran');
+})->name('validasi-pembayaran');
+
+Route::get('/data-admin', function(){
+    return view('layouts.data_admin');
+})->name('data-admin');
