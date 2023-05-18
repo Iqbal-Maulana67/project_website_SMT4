@@ -66,7 +66,7 @@
                                 <td>NA</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-warning"> <i class="fas fa-edit fa-sm"></i> </button>
+                                        <button class="btn btn-warning"> <i class="fas fa-pen fa-sm"></i> </button>
                                         <button class="btn btn-danger" data-target="#deleteDataModal" data-toggle="modal"><i class="fas fa-trash fa-sm"></i></button>
                                     </div>
                                 </td>

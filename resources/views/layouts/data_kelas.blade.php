@@ -106,7 +106,7 @@
                                             id-kelas="12"
                                             nama-kelas="XII IPA 1"
                                         >
-                                            <i class="fas fa-edit fa-sm"></i>
+                                            <i class="fas fa-pen fa-sm"></i>
                                         </button>
                                         <button class="btn btn-danger" data-toggle="modal" data-target="#deleteDataModal"><i class="fas fa-trash fa-sm"></i></button>
                                     </div>
