@@ -12,4 +12,12 @@ $(document).ready(function (){
         nama_admin.val(buttonModal.getAttribute('nama-admin'));
         password.val(buttonModal.getAttribute('password'));
     });
-});
+
+    $('deleteDataModal').on('show.bs.modal', function(){
+        var buttonModal = document.getElementById('deleteButtonModal');
+        var modal = $('#deleteDataModal');
+        var form = modal.find('#modal-form-admin-delete');
+        var username = form.find('#username');
+        username.val(buttonModal.getAttribute('username'));
+    })
+}); 

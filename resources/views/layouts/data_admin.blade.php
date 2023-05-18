@@ -96,8 +96,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-kelas">
-                                    <input type="hidden" name="id_kelas" id="id_kelas">
+                                <form action="table_admin.php" method="POST" id="modal-form-admin-delete">
+                                    <input type="hidden" name="username" id="username">
                                     Apakah anda yakin untuk menghapus data ini?
                             </div>
                             <div class="modal-footer">

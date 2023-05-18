@@ -62,7 +62,7 @@
                             </div>
                             <div class="modal-body">
                                 <form action="table_admin.php" method="POST" id="modal-form-jenis-tagihan">
-                                    <input type="hidden" name="id_tagihan" id="id_tagihan">
+                                    <input type="hidden" name="id_jenis_tagihan" id="id_jenish_tagihan">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Nama Tagihan</label>
                                         <input type="text" class="form-control" id="nama_tagihan" name="nama_tagihan" required>
@@ -96,8 +96,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-kelas">
-                                    <input type="hidden" name="id_kelas" id="id_kelas">
+                                <form action="table_admin.php" method="POST" id="modal-form-jenis-tagihan-delete">
+                                    <input type="hidden" name="id_jenis_tagihan" id="id_jenis_tagihan">
                                     Apakah anda yakin untuk menghapus data ini?
                             </div>
                             <div class="modal-footer">
@@ -124,13 +124,15 @@
                                 <td>
                                     <div class="btn-group">
                                         <button class="btn btn-warning" id="buttonModal" data-toggle="modal" data-target="#editDataModal"
-                                            id-tagihan="123"
+                                            id-jenis-tagihan="123"
                                             nama-jenis-tagihan="SPP"
                                             jangka-waktu-tagihan="bulanan"
                                         >
                                             <i class="fas fa-pen fa-sm"></i>
                                         </button>
-                                        <button class="btn btn-danger" id="" data-toggle="modal" data-target="#deleteDataModal">
+                                        <button class="btn btn-danger" id="deleteButtonModal" data-toggle="modal" data-target="#deleteDataModal"
+                                            id-jenis-tagihan="123"
+                                        >
                                             <i class="fas fa-trash fa-sm"></i>
                                         </button>
                                     </div>

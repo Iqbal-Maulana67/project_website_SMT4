@@ -28,8 +28,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-kelas">
-                                    <input type="hidden" name="id_kelas" id="id_kelas">
+                                <form action="table_admin.php" method="POST" id="modal-form-siswa-delete">
+                                    <input type="hidden" name="id_siswa" id="id_siswa">
                                     Apakah anda yakin untuk menghapus data ini?
                             </div>
                             <div class="modal-footer">
@@ -67,7 +67,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <button class="btn btn-warning"> <i class="fas fa-pen fa-sm"></i> </button>
-                                        <button class="btn btn-danger" data-target="#deleteDataModal" data-toggle="modal"><i class="fas fa-trash fa-sm"></i></button>
+                                        <button class="btn btn-danger" id="deleteButtonModal" data-target="#deleteDataModal" data-toggle="modal"><i class="fas fa-trash fa-sm"></i></button>
                                     </div>
                                 </td>
                             </tr>
