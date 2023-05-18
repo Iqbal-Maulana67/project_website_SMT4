@@ -13,7 +13,7 @@
             <div class="card shadow">
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary text-center">Revenue Sources</h6>
+                        <h6 class="m-0 font-weight-bold text-success text-center">Cari Data Siswa</h6>
                 </div>
                 <div class="col-xl-12">
                     <form action="">
@@ -25,7 +25,7 @@
                                 <input type="text" name="" id="" class="form-control">
                             </div>
                             <div class="col-xl-1">
-                                <input type="submit" name="" id="" class="btn btn-primary" value="Cari Data">
+                                <input type="submit" name="" id="" class="btn btn-success" value="Cari Data">
                             </div>
                         </div>
                     </form>
@@ -36,7 +36,7 @@
 
     <div class="card shadow">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"> Data yang ditemukan </h6>
+            <h6 class="m-0 font-weight-bold text-success"> Data yang ditemukan </h6>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">

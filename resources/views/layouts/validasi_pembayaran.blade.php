@@ -10,7 +10,7 @@
 
         <div class="card shadow col-xl-12 mr-3">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Detail Laporan Pembayaran</h6>
+                <h6 class="m-0 font-weight-bold text-success">Detail Laporan Pembayaran</h6>
             </div>
             <div class="card-body p-3">
                 <div class="table-responsive">

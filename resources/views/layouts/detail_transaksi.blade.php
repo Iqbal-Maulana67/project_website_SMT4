@@ -10,7 +10,7 @@
     <div class="row mb-3">
         <div class="card shadow col-xl-7 mr-3">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Informasi Siswa</h6>
+                <h6 class="m-0 font-weight-bold text-success">Informasi Siswa</h6>
             </div>
             <div class="card-body p-3">
                 <table class="table table-borderless">
@@ -42,7 +42,7 @@
 
         <div class="card shadow col-xl-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">History Pembayaran</h6>
+                <h6 class="m-0 font-weight-bold text-success">History Pembayaran</h6>
             </div>
             <div class="card-body p-3">
                 <table class="table table-history-pembayaran table-hover">
@@ -65,7 +65,7 @@
     <div class="row">
         <div class="card shadow col-xl-7 mr-3">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">List Tagihan Siswa</h6>
+                <h6 class="m-0 font-weight-bold text-success">List Tagihan Siswa</h6>
             </div>
             <div class="card-body p-3">
                 <table class="table table-bordered">
@@ -103,7 +103,7 @@
 
         <div class="card shadow col-xl-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">List Tagihan Siswa</h6>
+                <h6 class="m-0 font-weight-bold text-success">List Tagihan Siswa</h6>
             </div>
             <div class="card-body p-3">
                 <table class="table table-bordered mb-5" id="table_pembayaran_tagihan" width="100%" cellspacing="0">

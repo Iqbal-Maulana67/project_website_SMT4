@@ -10,7 +10,7 @@
 
         <div class="card shadow col-xl-12 mr-3">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Menu</h6>
+                <h6 class="m-0 font-weight-bold text-success">Menu</h6>
             </div>
             <div class="card-body p-3 row">
                 <div class="col-xl-12">
@@ -145,7 +145,7 @@
                                 <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
                             </div>
                         </div>
-                        <button class="btn btn-primary mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
+                        <button class="btn btn-success mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
 
                     </form>
                 </div>
@@ -275,7 +275,7 @@
                                 <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
                             </div>
                         </div>
-                        <button class="btn btn-primary mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
+                        <button class="btn btn-success mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
                     </form>
                 </div>
 
@@ -403,7 +403,7 @@
                                 <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
                             </div>
                         </div>
-                        <button class="btn btn-primary mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
+                        <button class="btn btn-success mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
                     </form>
                 </div>
                 
