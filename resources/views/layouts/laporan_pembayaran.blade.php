@@ -14,7 +14,7 @@
             </div>
             <div class="card-body p-3">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="table_siswa" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="table_laporan_pembayaran" width="100%" cellspacing="0">
                         <thead>
                             <th>Nama Siswa</th>
                             <th>Nama Tagihan</th>
@@ -36,4 +36,8 @@
             </div>
         </div>
 </div>
+@endsection
+
+@section('js-section')
+    <script src="js/layouts/laporan-pembayaran.js"></script>
 @endsection
