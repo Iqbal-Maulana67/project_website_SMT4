@@ -26,8 +26,8 @@ return new class extends Migration
             ->onDelete('cascade');
             
             $table->integer('harga_tagihan');
-            $table->string('bulan');
-            $table->year('tahun');
+            $table->string('bulan')->nullable();
+            $table->year('tahun')->nullable();
             $table->enum('status_tagihan', ['LUNAS', 'BELUM BAYAR']);
             $table->timestamps();
 

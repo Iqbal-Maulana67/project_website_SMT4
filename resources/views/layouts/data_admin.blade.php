@@ -28,7 +28,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-validasi">
+                                <form action="{{route('data-admin.store')}}" method="POST" id="modal-form-validasi">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Username</label>
                                         <input type="text" class="form-control" id="username" name="username">
@@ -62,7 +63,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-admin">
+                                <form action="" method="POST" id="modal-form-admin">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Username</label>
                                         <input type="text" class="form-control" id="username" name="username" readonly>
@@ -96,7 +98,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-admin-delete">
+                                <form action="" method="POST" id="modal-form-admin-delete">
+                                    @csrf
                                     <input type="hidden" name="username" id="username">
                                     Apakah anda yakin untuk menghapus data ini?
                             </div>
@@ -117,25 +120,30 @@
                             <th>Password</th>
                             <th>Aksi</th>
                         <tbody>
+                            @foreach ($admin as $admin)
                             <tr>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
+                                <td>{{$admin->username}}</td>
+                                <td>{{$admin->nama_admin}}</td>
+                                <td>{{$admin->password}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-warning" id="buttonModal" data-toggle="modal" data-target="#editDataModal"
-                                            username="maulana"
-                                            nama-admin="Iqbal Maulana"
-                                            password="123"
+                                        <button class="btn btn-warning btn-modal-admin" id="buttonModal" onclick=""
+                                            data-username="{{$admin->username}}"
+                                            data-nama-admin="{{$admin->nama_admin}}"
                                         >
                                             <i class="fas fa-pen fa-sm"></i>
                                         </button>
-                                        <button class="btn btn-danger" id="" data-toggle="modal" data-target="#deleteDataModal">
+                                        <button class="btn btn-danger btn-delete-admin" id="deleteButtonModal" onclick=""
+                                            data-username="{{$admin->username}}"
+                                        >
                                             <i class="fas fa-trash fa-sm"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
+
+                            @endforeach
+                           
                         </tbody>
                     </table>
                 </div>
@@ -146,5 +154,5 @@
 @endsection
 
 @section('js-section')
-    <script src="js/layouts/data-admin.js"></script>
+    <script src="{{ asset('js/layouts/data-admin.js') }}"></script>
 @endsection

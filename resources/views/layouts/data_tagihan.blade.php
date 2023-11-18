@@ -14,7 +14,7 @@
             </div>
             <div class="card-body p-3">
                 <div class="row float-right">
-                    <a href=""><button class="btn btn-success mb-3 text-end mr-2"><i class="fa fa-plus mr-2"></i>Atur Tagihan</button></a>
+                    <a href="{{ route('data-tagihan.create') }}"><button class="btn btn-success mb-3 text-end mr-2"><i class="fa fa-plus mr-2"></i>Atur Tagihan</button></a>
                 </div>
 
                 {{-- Edit Data Modal --}}
@@ -28,7 +28,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-tagihan">
+                                <form action="" method="POST" id="modal-form-tagihan">
+                                    @csrf
                                     <input type="hidden" id="id_tagihan" name="id_tagihan">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Harga Tagihan</label>
@@ -55,7 +56,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-tagihan-delete">
+                                <form action="" method="POST" id="modal-form-tagihan-delete">
+                                    @csrf
                                     <input type="hidden" name="id_tagihan" id="id_tagihan">
                                     Apakah anda yakin untuk menghapus data ini?
                             </div>
@@ -73,40 +75,39 @@
                         <thead>
                             <th>ID Tagihan</th>
                             <th>Nama Siswa</th>
-                            <th>Jenis Tagihan</th>
+                            <th>Nama Tagihan</th>
                             <th>Harga Tagihan</th>
-                            <th>Sisa Tagihan</th>
-                            <th>Bulan</th>
-                            <th>Tahun</th>
+                            <th>Waktu Tagihan</th>
                             <th>Status Tagihan</th>
                             <th>Aksi</th>
                         </thead>
                         <tbody>
+
+                            @foreach ($tagihan as $item)
                             <tr>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
+                                <td>{{ $item->id_tagihan }}</td>
+                                <td>{{ $item->list_siswa->nama }}</td>
+                                <td>{{ $item->list_jenis_tagihan->nama_jenis_tagihan . ' ' . $item->bulan . ' ' . $item->tahun}}</td>
+                                <td>{{ $item->harga_tagihan }}</td>
+                                <td>{{ $item->list_jenis_tagihan->jangka_waktu }}</td>
+                                <td>{{ $item->status_tagihan }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-warning" id="buttonModal" data-toggle="modal" data-target="#editDataModal"
-                                            id-tagihan="123"
-                                            harga-tagihan="20000"
+                                        <button class="btn btn-warning btn-edit-modal" id="buttonModal"
+                                            data-id-tagihan="{{ $item->id_tagihan }}"
+                                            data-harga-tagihan="{{ $item->harga_tagihan }}"
                                         >
                                             <i class="fas fa-pen fa-sm"></i>
                                         </button>
-                                        <button class="btn btn-danger" id="deleteButtonModal" data-toggle="modal" data-target="#deleteDataModal"
-                                            id-tagihan="123"
+                                        <button class="btn btn-danger btn-delete-modal" id="deleteButtonModal"
+                                            data-id-tagihan="{{ $item->id_tagihan }}"
                                         >
                                             <i class="fas fa-trash fa-sm"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -116,5 +117,5 @@
 @endsection
 
 @section('js-section')
-<script src="js/layouts/data-tagihan.js"></script>
+<script src="{{ asset('js/layouts/data-tagihan.js') }}"></script>
 @endsection

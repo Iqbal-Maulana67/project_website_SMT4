@@ -19,4 +19,20 @@ class Tagihan extends Model
         "tahun",
         "status_tagihan"
     ];
+
+    public function list_siswa(){
+        return $this->belongsTo(Siswa::class, 'nisn');
+    }
+
+    public function list_jenis_tagihan(){
+        return $this->belongsTo(JenisTagihan::class, 'id_jenis_tagihan');
+    }
+
+    public function list_laporan(){
+        return $this->hasMany(LaporanPembayaran::class, 'id_tagihan');
+    }
+
+    public function list_validasi(){
+        return $this->hasMany(ValidasiPembayaran::class, 'id_tagihan');
+    }
 }

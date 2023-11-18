@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('laporan_pembayaran', function (Blueprint $table) {
             $table->string('nisn');
             $table->unsignedBigInteger('id_tagihan');
-            $table->string('username');
+            $table->string('username')->nullable();
             $table->foreign('nisn')->references('nisn')->on('siswa')->onDelete('no action');
             $table->foreign('id_tagihan')->references('id_tagihan')->on('tagihan')->onDelete('no action');
-            $table->foreign('username')->references('username')->on('admin')->onDelete('no action');
+            $table->foreign('username')->references('username')->on('admin')->onDelete('set null');
             $table->date('tanggal_pembayaran');
             $table->timestamps();
         });

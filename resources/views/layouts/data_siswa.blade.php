@@ -14,7 +14,7 @@
             </div>
             <div class="card-body p-3">
                 <div class="row float-right">
-                    <a href=""><button class="btn btn-success mb-3 text-end mr-2"><i class="fa fa-plus mr-2"></i>Tambah data</button></a>
+                    <a href="{{ route('data-siswa.create') }}"><button class="btn btn-success mb-3 text-end mr-2"><i class="fa fa-plus mr-2"></i>Tambah data</button></a>
                 </div>
 
                 {{-- Delete Data Modal --}}
@@ -28,7 +28,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-siswa-delete">
+                                <form action="" method="POST" id="modal-form-siswa-delete">
+                                    @csrf
                                     <input type="hidden" name="id_siswa" id="id_siswa">
                                     Apakah anda yakin untuk menghapus data ini?
                             </div>
@@ -47,30 +48,39 @@
                             <th>NISN</th>
                             <th>NIS</th>
                             <th>Nama Siswa</th>
+                            <th>Jenis Kelamin</th>
                             <th>Kelas Siswa</th>
-                            <th>Jurusan</th>
+                            <th>Nomer HP</th>
                             <th>Status Pondok</th>
                             <th>Status Alumni</th>
                             <th>Nomer VA</th>
                             <th>Aksi</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-warning"> <i class="fas fa-pen fa-sm"></i> </button>
-                                        <button class="btn btn-danger" id="deleteButtonModal" data-target="#deleteDataModal" data-toggle="modal"><i class="fas fa-trash fa-sm"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach ($siswa as $item)
+                                <tr>
+                                    <td>{{ $item->nisn }}</td>
+                                    <td>{{ $item->nis }}</td>
+                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->jenis_kelamin }}</td>
+                                    <td>{{ $item->data_kelas->nama_kelas }}</td>
+                                    <td>{{ $item->no_hp }}</td>
+                                    <td>{{ $item->status_pondok }}</td>
+                                    <td>{{ $item->status_alumni }}</td>
+                                    <td>{{ $item->no_va }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{{ route('data-siswa.edit', $item->nisn ) }}"><button class="btn btn-warning"> <i class="fas fa-pen fa-sm"></i> </button></a>
+                                            <button class="btn btn-danger btn-delete-modal" id="deleteButtonModal"
+                                                data-nisn="{{ $item->nisn }}"
+                                            >
+                                            <i class="fas fa-trash fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -80,5 +90,5 @@
 @endsection
 
 @section('js-section')
-    <script src="js/layouts/data-siswa.js"></script>
+    <script src="{{ asset('js/layouts/data-siswa.js') }}"></script>
 @endsection

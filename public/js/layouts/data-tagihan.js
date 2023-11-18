@@ -1,21 +1,29 @@
 $(document).ready(function (){
     $('#table_tagihan').dataTable();
 
-    $('#editDataModal').on('show.bs.modal', function(){
-        var buttonModal = document.getElementById('buttonModal');
+    $('.btn-edit-modal').on('click', function(){
         var modal = $('#editDataModal');
         var form = modal.find('#modal-form-tagihan');
         var id_tagihan = form.find('#id_tagihan');
         var harga_tagihan = form.find('#harga_tagihan');
-        id_tagihan.val(buttonModal.getAttribute('id-tagihan'));
-        harga_tagihan.val(buttonModal.getAttribute('harga-tagihan'));
+        id_tagihan.val($(this).data('id-tagihan'));
+        harga_tagihan.val($(this).data('harga-tagihan'));
+
+        var newRoute = '/data-tagihan/ubah/' + $(this).data('id-tagihan');
+
+        form.attr('action', newRoute);
+        modal.modal('show');
     });
 
-    $('#deleteDataModal').on('show.bs.modal', function(){
-        var buttonModal = document.getElementById('deleteButtonModal');
+    $('.btn-delete-modal').on('click', function(){
         var modal = $('#deleteDataModal');
         var form = modal.find('#modal-form-tagihan-delete');
         var id_tagihan = form.find('#id_tagihan');
-        id_tagihan.val(buttonModal.getAttribute('id-tagihan'));
+        id_tagihan.val($(this).data('id-tagihan'));
+
+        var newRoute = '/data-tagihan/hapus/' + $(this).data('id-tagihan');
+
+        form.attr('action', newRoute);
+        modal.modal('show');
     })
 });

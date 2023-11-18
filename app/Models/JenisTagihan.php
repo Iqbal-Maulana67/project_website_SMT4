@@ -12,4 +12,8 @@ class JenisTagihan extends Model
     protected $primaryKey = "id_jenis_tagihan";
     protected $fillable = ["id_jenis_tagihan", "nama_jenis_tagihan", "jangka_waktu"];
 
+    public function list_tagihan(){
+        return $this->hasMany(Tagihan::class);
+    }
+
 }

@@ -26,4 +26,22 @@ class Siswa extends Model
         "tahun_angkatan",
         "gambar_siswa"
     ];
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    public function data_kelas(){
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id_kelas');
+    }
+
+    public function data_tagihan(){
+        return $this->hasMany(Tagihan::class, 'nisn');
+    }
+
+    public function data_pembayaran(){
+        return $this->hasMany(LaporanPembayaran::class, 'nisn');
+    }
+
+    public function data_validasi(){
+        return $this->hasMany(ValidasiPembayaran::class, 'nisn');
+    }
 }

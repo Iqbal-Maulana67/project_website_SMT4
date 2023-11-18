@@ -27,7 +27,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST">
+                                <form action="{{route('data-kelas.store')}}" method="POST">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Nama Kelas</label>
                                         <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" required>
@@ -52,7 +53,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-kelas">
+                                <form action="" method="POST" id="modal-form-kelas">
+                                    @csrf
                                     <input type="hidden" name="id_kelas" id="id_kelas">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Nama Kelas</label>
@@ -78,7 +80,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-kelas">
+                                <form action="" method="POST" id="modal-form-kelas-delete">
+                                    @csrf
                                     <input type="hidden" name="id_kelas" id="id_kelas">
                                     Apakah anda yakin untuk menghapus data ini?
                             </div>
@@ -97,21 +100,26 @@
                             <th>Nama Kelas</th>
                             <th>Aksi</th>
                         <tbody>
+                            @foreach ($kelas as $kelas)
                             <tr>
-                                <td>NA</td>
-                                <td>NA</td>
+                                <td>{{$kelas->id_kelas}}</td>
+                                <td>{{$kelas->nama_kelas}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-warning" data-toggle="modal" data-target="#editDataModal" id="buttonModal"
-                                            id-kelas="12"
-                                            nama-kelas="XII IPA 1"
+                                        <button class="btn btn-warning btn-modal-kelas" id="buttonModal" onclick=""
+                                            data-id-kelas="{{$kelas->id_kelas}}"
+                                            data-nama-kelas="{{$kelas->nama_kelas}}"
                                         >
                                             <i class="fas fa-pen fa-sm"></i>
                                         </button>
-                                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteDataModal"><i class="fas fa-trash fa-sm"></i></button>
+                                        <button class="btn btn-danger btn-delete-kelas" id="deleteButtonModal" onclick=""
+                                            data-id-kelas="{{$kelas->id_kelas}}"
+                                        >
+                                            <i class="fas fa-trash fa-sm"></i></button>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -121,5 +129,5 @@
 @endsection
 
 @section('js-section')
-    <script src="js/layouts/data-kelas.js"></script>
+    <script src="{{ asset('js/layouts/data-kelas.js') }}"></script>
 @endsection

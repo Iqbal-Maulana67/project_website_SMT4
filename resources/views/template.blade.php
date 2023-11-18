@@ -12,15 +12,15 @@
     <title>A-KUS WEBSITE</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href=" {{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -54,9 +54,9 @@
                 </a>
                 <div id="manajemen_pembayaran_nav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('transaksi') }}">Menu Pembayaran</a>
-                        <a class="collapse-item" href="{{  route('validasi-pembayaran') }}">Validasi Pembayaran</a>
-                        <a class="collapse-item" href="{{  route('laporan-pembayaran') }}">Laporan Pembayaran</a>
+                        <a class="collapse-item" href="{{ route('menu-pembayaran.index') }}">Menu Pembayaran</a>
+                        <a class="collapse-item" href="{{  route('validasi-pembayaran.index') }}">Validasi Pembayaran</a>
+                        <a class="collapse-item" href="{{  route('data-laporan.index') }}">Laporan Pembayaran</a>
                     </div>
                 </div>
             </li>
@@ -69,8 +69,8 @@
                 </a>
                 <div id="manajemen_tagihan_nav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('data-tagihan') }}">Data Tagihan</a>
-                        <a class="collapse-item" href="{{  route('data-jenis-tagihan') }}">Data Jenis Tagihan</a>
+                        <a class="collapse-item" href="{{ route('data-tagihan.index') }}">Data Tagihan</a>
+                        <a class="collapse-item" href="{{  route('data-jenis-tagihan.index') }}">Data Jenis Tagihan</a>
                     </div>
                 </div>
             </li>
@@ -83,14 +83,14 @@
                 </a>
                 <div id="manajemen_siswa_nav" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('data-siswa') }}">Data Siswa</a>
-                        <a class="collapse-item" href="{{  route('data-kelas') }}">Data Kelas</a>
+                        <a class="collapse-item" href="{{ route('data-siswa.index') }}">Data Siswa</a>
+                        <a class="collapse-item" href="{{  route('data-kelas.index') }}">Data Kelas</a>
                     </div>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('data-admin') }}">
+                <a class="nav-link" href="{{ route('data-admin.index') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Manajemen Admin</span></a>
             </li>
@@ -126,9 +126,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::guard('admin')->user()->nama_admin }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -184,34 +184,36 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
                 <div class="modal-body">Apakah anda yakin untuk keluar dari akun?.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger" href="login.html">Keluar</a>
+                    <button class="btn btn-danger" type="submit">Keluar</button>
                 </div>
+            </form>
             </div>
         </div>
-    </div>
+    </div>```````````````````````````
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{  asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/currency-formatter.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="{{ asset('js/currency-formatter.js') }}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
     @yield('js-section')
-    <script src="js/demo/chart-pie-demo.js"></script>
     
 </body>
 
