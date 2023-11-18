@@ -23,13 +23,15 @@
                             <th>Tanggal Pembayaran</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                            </tr>
+                            @foreach ($laporanpembayaran as $laporan_pembayaran)
+                                <tr>
+                                    <td>{{$laporan_pembayaran->data_siswa->nama}}</td>
+                                    <td>{{$laporan_pembayaran->data_tagihan->list_jenis_tagihan->nama_jenis_tagihan}}</td>
+                                    <td>{{$laporan_pembayaran->data_tagihan->harga_tagihan}}</td>
+                                    <td>{{ isset($laporan_pembayaran->data_admin->nama_admin) ? $laporan_pembayaran->data_admin->nama_admin : 'Terhapus'}}</td>
+                                    <td>{{$laporan_pembayaran->tanggal_pembayaran}}</td>
+                                </tr> 
+                                @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -39,5 +41,5 @@
 @endsection
 
 @section('js-section')
-    <script src="js/layouts/laporan-pembayaran.js"></script>
+    <script src="{{ asset('js/layouts/laporan-pembayaran.js') }}"></script>
 @endsection

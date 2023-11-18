@@ -1,6 +1,7 @@
 
     var checkboxesNamaArray = [];
     var checkboxesHargaArray = [];
+    var checkboxesIDArray = [];
     var checkboxes = document.querySelectorAll('.cb_table_tagihan');
     var object_tagihan = Array();
     var total_harga_tagihan = 0;
@@ -12,13 +13,12 @@
             searching: false,
             ordering: false,
             columns: [
+                {data: "id_tagihan"},
                 {data: "nama_tagihan"},
                 {data: "harga_tagihan"}
             ]
 
         });
-
-            console.log(reverseFormatNumber('2,500'));
     });
 
     $('#txt_uang').keydown(function() {
@@ -39,6 +39,7 @@
         checkbox.addEventListener('click', function(){
             checkboxesNamaArray = [];
             checkboxesHargaArray = [];
+            checkboxesIDArray = [];
 
             fetchcheckboxValue();
 
@@ -55,6 +56,7 @@
                 datatable.rows.add(
                     [
                         {
+                            id_tagihan : "NA",
                             nama_tagihan : "NA",
                             harga_tagihan : "NA"
                         }
@@ -62,6 +64,8 @@
                 ).draw();     
                 setTotalTagihan(0);           
             }
+
+            setKembalianTagihan();
         });
     }
 
@@ -69,12 +73,14 @@
         object_tagihan = new Array();
         for(var checkbox of checkboxes){
             if(checkbox.checked == true){
+                checkboxesIDArray.push(checkbox.getAttribute('cb_id_tagihan'));
                 checkboxesNamaArray.push(checkbox.getAttribute('cb_nama_tagihan'));
                 checkboxesHargaArray.push(checkbox.getAttribute('cb_harga_tagihan'));
             }
         }
         for (let i = 0; i < checkboxesNamaArray.length; i++) {
             object_tagihan.push({
+                'id_tagihan' : checkboxesIDArray[i],
                 'nama_tagihan' : checkboxesNamaArray[i],
                 'harga_tagihan' : currencyFormat(checkboxesHargaArray[i])
             });
@@ -98,6 +104,47 @@
             document.getElementById('detail_kembalian').value = currencyFormat(hasil_kembalian);
         }else{
             document.getElementById('detail_kembalian').value = 0;
+        }
+    }
+
+    function post_data(){
+        total = document.getElementById('detail_total_harga').value;
+        uang = document.getElementById('txt_uang').value;
+
+        if (total.length > 3) total = reverseFormatNumber(total);
+        if (uang.length > 3) uang = reverseFormatNumber(uang);
+
+        if(uang - total >= 0){
+            var tableData = [];
+
+            $('#table_pembayaran_tagihan tbody tr').each(function() {
+                var rowData = [];
+                $(this).find('td').each(function() {
+                    rowData.push($(this).text());
+                });
+                tableData.push(rowData);
+            });
+
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            var nisn = document.getElementById('txt_nisn').value;
+
+            $.ajax({
+                url: "/menu-pembayaran/bayar",
+                method: 'POST',
+                data: {
+                    _token: csrfToken,
+                    nisn: nisn,
+                    tableData: tableData
+                },
+                success: function (response) {
+                    window.location.href = '/menu-pembayaran/detail/' + nisn;
+                },
+                error: function(xhr, status, error) {
+                    // Handle the error
+                }
+            });
+        }else{
+            console.log('kureng');
         }
     }
 

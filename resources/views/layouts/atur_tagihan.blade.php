@@ -26,17 +26,21 @@
                 </div>
                 {{-- Per Siswa Form --}}
                 <div class="col-xl-12 border rounded d-none" id="siswa-form-page">
-                    <form action="">
+                    <form action="{{ route('data-tagihan.store_siswa') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukkan NISN Siswa</label>
-                            <input type="text" name="alamat" id="alamat" class="form-control">
+                            <input type="text" name="nisn" id="nisn" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Pilih Tagihan</label>
                             <select class="custom-select" id="jangka_waktu_siswa_form" name="jangka_waktu" required>
                                 <option selected value="">Tagihan</option>
-                                <option value="SPP" jangka_waktu="bulanan">SPP</option>
-                                <option value="Gedung" jangka_waktu="bebas">Gedung</option>
+
+                                @foreach ($jenis_tagihan as $item)
+                                <option value="{{ $item->id_jenis_tagihan }}" jangka_waktu="{{ $item->jangka_waktu }}">{{ $item->nama_jenis_tagihan }}</option>
+                                @endforeach
+                                
                             </select>
                         </div>
 
@@ -124,17 +128,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Pilih Tahun</label>
-                                <select class="custom-select" id="jangka_waktu" name="tahun_tagihan" required>
+                                <select class="custom-select" id="tahun_tagihan" name="tahun_tagihan">
                                     <option selected value="">Tahun</option>
-                                    <option value="" >2023</option>
-                                    <option value="" >2022</option>
-                                    <option value="" >2021</option>
-                                    <option value="" >2020</option>
+                                    <?php
+                                        $year = date('Y');
+                                        for($i = 0; $i < 5; $i++){
+                                            echo('<option value="' . $year - $i . '">' . $year - $i . '</option>');
+                                        }
+                                    ?>
                                 </select>   
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Harga Tagihan</label>
-                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
+                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan_bulanan">
                             </div>
                         </div>
 
@@ -142,7 +148,7 @@
                         <div class="d-none" id="bebas-siswa-form">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Harga Tagihan</label>
-                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
+                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan_bebas">
                             </div>
                         </div>
                         <button class="btn btn-success mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
@@ -152,21 +158,23 @@
 
                 {{-- Per Status Siswa Form --}}
                 <div class="col-xl-12 border rounded d-none" id="status-siswa-form-page">
-                    <form action="">
+                    <form action="{{ route('data-tagihan.store_status') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Pilih Status Pondok Siswa</label>
                             <select class="custom-select" id="status_pondok" name="status_pondok" required>
                                 <option selected value="">Status Pondok Siswa</option>
                                 <option value="pondok">Pondok</option>
-                                <option value="biasa" >Biasa</option>
+                                <option value="normal" >Biasa</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Pilih Tagihan</label>
                             <select class="custom-select" id="jangka_waktu_status_siswa_form" name="jangka_waktu" required>
                                 <option selected value="">Tagihan</option>
-                                <option value="siswa" jangka_waktu="bulanan">SPP</option>
-                                <option value="status_siswa" jangka_waktu="bebas">Gedung</option>
+                                @foreach ($jenis_tagihan as $item)
+                                <option value="{{ $item->id_jenis_tagihan }}" jangka_waktu="{{ $item->jangka_waktu }}">{{ $item->nama_jenis_tagihan }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -254,17 +262,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Pilih Tahun</label>
-                                <select class="custom-select" id="jangka_waktu" name="tahun_tagihan" required>
+                                <select class="custom-select" id="jangka_waktu" name="tahun_tagihan">
                                     <option selected value="">Tahun</option>
-                                    <option value="" >2023</option>
-                                    <option value="" >2022</option>
-                                    <option value="" >2021</option>
-                                    <option value="" >2020</option>
+                                    <?php
+                                        $year = date('Y');
+                                        for($i = 0; $i < 5; $i++){
+                                            echo('<option value="' . $year - $i . '">' . $year - $i . '</option>');
+                                        }
+                                    ?>
                                 </select>   
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Harga Tagihan</label>
-                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
+                                <input type="text" class="form-control" id="harga_tagihan_bulanan" name="harga_tagihan_bulanan">
                             </div>
                         </div>
 
@@ -272,7 +282,7 @@
                         <div class="d-none" id="bebas-status-siswa-form">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Harga Tagihan</label>
-                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
+                                <input type="text" class="form-control" id="harga_tagihan_bebas" name="harga_tagihan_bebas">
                             </div>
                         </div>
                         <button class="btn btn-success mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
@@ -281,21 +291,24 @@
 
                 {{-- Per Tahun Angkatan Siswa Form --}}
                 <div class="col-xl-12 border rounded d-none" id="tahun-angkatan-siswa-form-page">
-                    <form action="">
+                    <form action="{{ route('data-tagihan.store_angkatan') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Pilih Tahun Angkatan Siswa</label>
-                            <select class="custom-select" id="status_pondok" name="status_pondok" required>
+                            <select class="custom-select" id="tahun_angkatan_siswa" name="tahun_angkatan" required>
                                 <option selected value="">Tahun Angkatan Siswa</option>
-                                <option value="2022">2022/2023</option>
-                                <option value="2023" >2023/2024</option>
+                                @foreach ($tahun_angkatan as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Pilih Tagihan</label>
                             <select class="custom-select" id="jangka_waktu_tahun_angkatan_siswa_form" name="jangka_waktu" required>
                                 <option selected value="">Tagihan</option>
-                                <option value="SPP" jangka_waktu="bulanan">SPP</option>
-                                <option value="Gedung" jangka_waktu="bebas">Gedung</option>
+                                @foreach ($jenis_tagihan as $item)
+                                <option value="{{ $item->id_jenis_tagihan }}" jangka_waktu="{{ $item->jangka_waktu }}">{{ $item->nama_jenis_tagihan }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -383,24 +396,26 @@
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Pilih Tahun</label>
-                                <select class="custom-select" id="jangka_waktu" name="tahun_tagihan" required>
+                                <select class="custom-select" id="jangka_waktu" name="tahun_tagihan">
                                     <option selected value="">Tahun</option>
-                                    <option value="" >2023</option>
-                                    <option value="" >2022</option>
-                                    <option value="" >2021</option>
-                                    <option value="" >2020</option>
+                                    <?php
+                                        $year = date('Y');
+                                        for($i = 0; $i < 5; $i++){
+                                            echo('<option value="' . $year - $i . '">' . $year - $i . '</option>');
+                                        }
+                                    ?>
                                 </select>   
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Harga Tagihan</label>
-                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
+                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan_bulanan" >
                             </div>
                         </div>
                         {{-- Bebas Formulir --}}
                         <div class="d-none" id="bebas-tahun-angkatan-siswa-form">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Harga Tagihan</label>
-                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan" required>
+                                <input type="text" class="form-control" id="harga_tagihan" name="harga_tagihan_bebas">
                             </div>
                         </div>
                         <button class="btn btn-success mb-3 float-right" type="submit"><i class="fa fa-save"></i> Simpan</button>
@@ -413,5 +428,5 @@
 @endsection
 
 @section('js-section')
-<script src="js/layouts/atur-tagihan.js"></script>
+<script src="{{ asset('js/layouts/atur-tagihan.js') }}"></script>
 @endsection

@@ -18,22 +18,22 @@
                         <tr class="d-flex">
                             <td class="col-4">NISN Siswa</td>
                             <td>:</td>
-                            <td class="col-auto">NISN Siswa</td>
+                            <td class="col-auto">{{ $siswa->nisn }}</td>
                         </tr>
                         <tr class="d-flex">
                             <td class="col-4">NIS Siswa</td>
                             <td>:</td>
-                            <td class="col-auto">NIS Siswa</td>
+                            <td class="col-auto">{{ $siswa->nis }}</td>
                         </tr>
                         <tr class="d-flex">
                             <td class="col-4">Nama Siswa</td>
                             <td>:</td>
-                            <td class="col-auto">Nama Siswa</td>
+                            <td class="col-auto">{{ $siswa->nama }}</td>
                         </tr>
                         <tr class="d-flex">
                             <td class="col-4">Alamat Siswa</td>
                             <td>:</td>
-                            <td class="col-auto">Alamat Siswa</td>
+                            <td class="col-auto">{{ $siswa->alamat }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -53,10 +53,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>SPP Januari 2023</td>
-                            <td>20/01/2023</td>
-                        </tr>
+                        @foreach ($siswa->data_pembayaran as $item)
+                            <tr>
+                              <td>{{ $item->data_tagihan->list_jenis_tagihan->nama_jenis_tagihan . ' ' . $item->data_tagihan->bulan . ' ' . $item->data_tagihan->tahun }}</td>
+                              <td>{{ $item->tanggal_pembayaran }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -78,24 +80,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>SPP Januari 2023</td>
-                            <td>100000</td>
-                            <td>Belum Lunas</td>
-                            <td><input type="checkbox" name="" id="cb_table_tagihan" class="cb_table_tagihan" cb_nama_tagihan="SPP Januari 2023" cb_harga_tagihan="100000"></td>
-                        </tr>
-                        <tr>
-                            <td>SPP Februari 2023</td>
-                            <td>100000</td>
-                            <td>Belum Lunas</td>
-                            <td><input type="checkbox" name="" id="cb_table_tagihan" class="cb_table_tagihan" cb_nama_tagihan="SPP Februari 2023" cb_harga_tagihan="100000"></td>
-                        </tr>
-                        <tr>
-                            <td>SPP Maret 2023</td>
-                            <td>100000</td>
-                            <td>Belum Lunas</td>
-                            <td><input type="checkbox" name="" id="cb_table_tagihan" class="cb_table_tagihan" cb_nama_tagihan="SPP Maret 2023" cb_harga_tagihan="100000"></td>
-                        </tr>
+                        @foreach ($siswa->data_tagihan as $item)
+                        @if ($item->status_tagihan == "BELUM BAYAR")
+                            <tr>
+                                <td>{{ $item->list_jenis_tagihan->nama_jenis_tagihan . ' ' . $item->bulan . ' ' . $item->tahun}}</td>
+                                <td>{{ $item->harga_tagihan }}</td>
+                                <td>{{ $item->status_tagihan }}</td>
+                                <td><input type="checkbox" name="" id="cb_table_tagihan" class="cb_table_tagihan" cb_nama_tagihan="{{ $item->list_jenis_tagihan->nama_jenis_tagihan . ' ' . $item->bulan . ' ' . $item->tahun}}" cb_harga_tagihan="{{ $item->harga_tagihan }}" cb_id_tagihan="{{ $item->id_tagihan }}"></td>
+                            </tr>
+                        @endif
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -106,18 +100,17 @@
                 <h6 class="m-0 font-weight-bold text-success">List Tagihan Siswa</h6>
             </div>
             <div class="card-body p-3">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
                 <table class="table table-bordered mb-5" id="table_pembayaran_tagihan" width="100%" cellspacing="0">
                     <thead>
+                        <input type="hidden" id="txt_nisn" value="{{ $siswa->nisn }}">
                         <tr>
+                            <th>ID Tagihan</th>
                             <th>Nama</th>
                             <th>Harga</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>NA</td>
-                            <td>NA</td>
-                        </tr>
                     </tbody>
                 </table>
                 <div class="row">
@@ -133,6 +126,9 @@
                         <label for="recipient-name" class="col-form-label">Kembalian</label>
                         <input type="text" class="form-control" id="detail_kembalian" name="txt_kembalian" value="0" readonly>
                     </div>
+                    <div class="col-xl-12">
+                        <button class="btn btn-success col-xl-12" onclick="post_data()">BAYAR</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,6 +138,6 @@
 @endsection
 
 @section('js-section')
-    <script src="js/layouts/detail-transaksi.js"></script>
+    <script src="{{ asset('js/layouts/detail-transaksi.js') }}"></script>
 @endsection
 

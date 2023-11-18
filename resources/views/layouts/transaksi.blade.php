@@ -16,13 +16,14 @@
                         <h6 class="m-0 font-weight-bold text-success text-center">Cari Data Siswa</h6>
                 </div>
                 <div class="col-xl-12">
-                    <form action="">
+                    <form action="{{ route('menu-pembayaran.search_data') }}" method="POST">
+                        @csrf
                         <div class="form-group row pt-2">
                             <div class="col-xl-12">
                                 <h5>Masukkan Data Siswa</h5>
                             </div>
                             <div class="col-xl-10">
-                                <input type="text" name="" id="" class="form-control">
+                                <input type="text" name="nisn" id="nisn" class="form-control">
                             </div>
                             <div class="col-xl-1">
                                 <input type="submit" name="" id="" class="btn btn-success" value="Cari Data">
@@ -34,6 +35,8 @@
         </div>
     </div>
 
+    @if (isset($siswa))
+        
     <div class="card shadow">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-success"> Data yang ditemukan </h6>
@@ -51,23 +54,27 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($siswa as $item)
                     <tr>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
+                        <td>{{ $item->nisn }}</td>
+                        <td>{{ $item->nis }}</td>
+                        <td>{{ $item->nama }}</td>
+                        <td>{{ $item->data_kelas->nama_kelas }}</td>
+                        <td>{{ $item->alamat }}</td>
                         <td>
-                            <a href="">
+                            <a href="{{ route('menu-pembayaran.detail', $item->nisn) }}">
                                 <div class="btn btn-primary">
                                     <i class="fas fa-eye"></i>
                                 </div>
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+    @endif
+
 </div>
 @endsection

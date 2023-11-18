@@ -27,10 +27,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST">
+                                <form action="{{route('data-jenis-tagihan.store')}}" method="POST">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Nama Tagihan</label>
-                                        <input type="text" class="form-control" id="nama_tagihan" name="nama_tagihan" required>
+                                        <input type="text" class="form-control" id="nama_jenis_tagihan" name="nama_jenis_tagihan" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Jangka Waktu Tagihan</label>
@@ -61,11 +62,12 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-jenis-tagihan">
-                                    <input type="hidden" name="id_jenis_tagihan" id="id_jenish_tagihan">
+                                <form action="" method="POST" id="modal-form-jenis-tagihan">
+                                    @csrf
+                                    <input type="hidden" name="id_jenis_tagihan" id="id_jenis_tagihan">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Nama Tagihan</label>
-                                        <input type="text" class="form-control" id="nama_tagihan" name="nama_tagihan" required>
+                                        <input type="text" class="form-control" id="nama_tagihan" name="nama_jenis_tagihan" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Jangka Waktu Tagihan</label>
@@ -96,7 +98,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="table_admin.php" method="POST" id="modal-form-jenis-tagihan-delete">
+                                <form action="" method="POST" id="modal-form-jenis-tagihan-delete">
+                                    @csrf
                                     <input type="hidden" name="id_jenis_tagihan" id="id_jenis_tagihan">
                                     Apakah anda yakin untuk menghapus data ini?
                             </div>
@@ -117,27 +120,29 @@
                             <th>Jangka Waktu Tagihan</th>
                             <th>Aksi</th>
                         <tbody>
+                        @foreach ($jenisTagihan as $jenis_tagihan) 
                             <tr>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
+                                <td>{{$jenis_tagihan->id_jenis_tagihan}}</td>
+                                <td>{{$jenis_tagihan->nama_jenis_tagihan}}</td>
+                                <td>{{$jenis_tagihan->jangka_waktu}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-warning" id="buttonModal" data-toggle="modal" data-target="#editDataModal"
-                                            id-jenis-tagihan="123"
-                                            nama-jenis-tagihan="SPP"
-                                            jangka-waktu-tagihan="bulanan"
+                                        <button class="btn btn-warning btn-modal-jenis-tagihan" id="buttonModal" onclick=""
+                                            data-id-jenis-tagihan="{{$jenis_tagihan->id_jenis_tagihan}}"
+                                            data-nama-jenis-tagihan="{{$jenis_tagihan->nama_jenis_tagihan}}"
+                                            data-jangka-waktu-tagihan="{{$jenis_tagihan->jangka_waktu}}"
                                         >
                                             <i class="fas fa-pen fa-sm"></i>
                                         </button>
-                                        <button class="btn btn-danger" id="deleteButtonModal" data-toggle="modal" data-target="#deleteDataModal"
-                                            id-jenis-tagihan="123"
-                                        >
+                                        <button class="btn btn-danger btn-delete-jenis-tagihan" id="deleteButtonModal" onclick=""
+                                            data-id-jenis-tagihan="{{$jenis_tagihan->id_jenis_tagihan}}"
+                                        > 
                                             <i class="fas fa-trash fa-sm"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -25,28 +25,31 @@
                             <th>Aksi</th>
                         </thead>
                         <tbody>
+
+                            @foreach ($validasi as $item)
                             <tr>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
+                                <td>{{ $item->list_siswa->nisn }}</td>
+                                <td>{{ $item->list_siswa->nama }}</td>
+                                <td>{{ $item->list_tagihan->id_tagihan }}</td>
+                                <td>{{ $item->list_tagihan->list_jenis_tagihan->nama_jenis_tagihan . ' ' . $item->list_tagihan->bulan . ' ' . $item->list_tagihan->tahun }}</td>
+                                <td>{{ $item->list_tagihan->harga_tagihan }}</td>
+                                <td>{{ $item->list_tagihan->status_tagihan }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-primary" id="buttonModal" data-toggle="modal" data-target="#viewModal"
-                                            nisn-value="123"
-                                            nama-siswa="Maulana"
-                                            id-tagihan="123"
-                                            nama-tagihan="SPP Januari 2022"
-                                            harga-tagihan="2000"
-                                            gambar-pembayaran="image.jpg"
+                                        <button class="btn btn-primary btn-view-modal" id="buttonModal" data-toggle="modal" data-target="#viewModal"
+                                            data-nisn="{{ $item->list_siswa->nisn }}"
+                                            data-nama-siswa="{{ $item->list_siswa->nama }}"
+                                            data-id-tagihan="{{ $item->list_tagihan->id_tagihan }}"
+                                            data-nama-tagihan="{{ $item->list_tagihan->list_jenis_tagihan->nama_jenis_tagihan . ' ' . $item->list_tagihan->bulan . ' ' . $item->list_tagihan->tahun }}"
+                                            data-harga-tagihan="{{ $item->list_tagihan->harga_tagihan }}"
+                                            data-gambar-pembayaran="{{ $item->gambar_pembayaran }}"
                                         >
                                             <i class="fas fa-eye fa-sm"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
@@ -60,7 +63,8 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="table_admin.php" method="POST" id="modal-form-validasi">
+                                    <form action="{{ route('validasi-pembayaran.valid') }}" method="POST" id="modal-form-validasi">
+                                        @csrf
                                         <div class="form-group">
                                             <label for="recipient-name" class="col-form-label">NISN Siswa</label>
                                             <input type="text" class="form-control" id="nisn" name="nisn" readonly>
@@ -83,12 +87,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="recipient-name" class="col-form-label">Bukti Pembayaran</label>
-                                            <img src="" alt="" id="gambar_pembayaran">
+                                            <img src="" alt="" id="gambar_pembayaran" style="width: 100%">
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tolak Pembayaran</button>
-                                    <button type="submit" class="btn btn-success">Validasi Pembayaran</button>
+                                    <button type="submit" class="btn btn-danger" id="btn-tolak-pembayaran">Tolak Pembayaran</button>
+                                    <button type="submit" class="btn btn-success" id="btn-valid-pembayaran">Validasi Pembayaran</button>
                                 </div>
                                 </form>
                             </div>

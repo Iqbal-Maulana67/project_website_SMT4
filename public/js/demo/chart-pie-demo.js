@@ -3,15 +3,17 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
+var totalPondok = document.getElementById('total_siswa_pondok').value;
+var totalBiasa = document.getElementById('total_siswa_biasa').value;
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: ["Siswa Pondok", "Siswa Biasa"],
     datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      data: [totalPondok, totalBiasa],
+      backgroundColor: ['#4e73df', '#1cc88a'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
@@ -34,15 +36,17 @@ var myPieChart = new Chart(ctx, {
   },
 });
 
+var totalLunas = document.getElementById('total_lunas').value;
+var totalBelumLunas = document.getElementById('total_belum_lunas').value;
 var ctx = document.getElementById("myPieChart2");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: ["Lunas", "Belum Lunas"],
     datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      data: [totalLunas, totalBelumLunas],
+      backgroundColor: ['#4e73df', '#1cc88a'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
