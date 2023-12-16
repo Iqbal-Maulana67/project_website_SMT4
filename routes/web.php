@@ -37,9 +37,9 @@ Route::post('/data-tagihan/tambah/status', [TagihanController::class, 'store_pon
 Route::post('/data-tagihan/tambah/angkatan', [TagihanController::class, 'store_angkatan'])->name('data-tagihan.store_angkatan')->middleware('admin.auth');
 Route::post('/data-tagihan/ubah/{tagihan}', [TagihanController::class, 'update'])->name('data-tagihan.update')->middleware('admin.auth');
 Route::post('/data-tagihan/hapus/{tagihan}', [TagihanController::class, 'destroy'])->name('data-tagihan.destroy')->middleware('admin.auth');
+Route::post('/data-tagihan/export/', [TagihanController::class, 'export_data_excel'])->name('data-tagihan.export')->middleware('admin.auth');
 
-// Menu Pmebayaran Routes
-
+// Menu Pembayaran Routes
 Route::get('menu-pembayaran', [MenuPembayaranController::class, 'index'])->name('menu-pembayaran.index')->middleware('admin.auth');
 Route::post('menu-pembayaran/search', [MenuPembayaranController::class, 'search_data'])->name('menu-pembayaran.search_data')->middleware('admin.auth');
 Route::get('menu-pembayaran/detail/{nisn}', [MenuPembayaranController::class, 'view_page'])->name('menu-pembayaran.detail')->middleware('admin.auth');
