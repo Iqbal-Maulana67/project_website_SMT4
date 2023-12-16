@@ -8,3 +8,48 @@
     border-bottom: 2px solid black;
     cursor: pointer;
 }
+
+.dropdown-menu .dropdown-menu-items 
+{
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #3a4b45;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+@media screen and (min-width: 576px) 
+{
+    .modal-export
+    {
+        max-width: 80%;
+        margin: 1.75rem auto;
+    }
+
+    #table_export_tagihan_wrapper
+    {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 992px) 
+{
+    .modal-export
+    {
+        max-width: 80%;
+    }
+
+    #table_export_tagihan_wrapper
+    {
+        display: block;
+    }
+}

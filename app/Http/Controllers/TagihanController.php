@@ -7,6 +7,8 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Tagihan;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class TagihanController extends Controller
 {
@@ -118,8 +120,9 @@ class TagihanController extends Controller
     }
 
     public function update(Tagihan $tagihan, Request $request){
+        $amount = str_replace([',', '.'], '', $request->harga_tagihan);
         $tagihan->update([
-            'harga_tagihan' => $request->harga_tagihan
+            'harga_tagihan' => $amount
         ]);
 
         return redirect()->route('data-tagihan.index');
@@ -127,6 +130,48 @@ class TagihanController extends Controller
 
     public function destroy(Tagihan $tagihan){
         $tagihan->delete();
+
+        return redirect()->route('data-tagihan.index');
+    }
+    
+    public function export_data_excel(Request $request)
+    {
+        $data_tagihan = Tagihan::join('Siswa', 'Tagihan.nisn', '=', 'Siswa.nisn')
+            ->join('jenis_tagihan', 'Tagihan.id_jenis_tagihan', '=', 'jenis_tagihan.id_jenis_tagihan')
+            ->where('Siswa.nama', '=', $request->export_nama_siswa_tagihan)
+            ->get();
+
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->setTitle('Data Tagihan Siswa');
+
+            $sheet->setCellValue('A1', 'No');
+            $sheet->setCellValue('B1', 'ID Tagihan');
+            $sheet->setCellValue('C1', 'NISN Siswa');
+            $sheet->setCellValue('D1', 'Nama Siswa');
+            $sheet->setCellValue('E1', 'Nama Tagihan');
+            $sheet->setCellValue('F1', 'Harga Tagihan');
+            $sheet->setCellValue('G1', 'Waktu Tagihan');
+            $sheet->setCellValue('H1', 'Status Tagihan');
+ 
+            $no_cell = 2;
+            $no_data = 1;
+            foreach($data_tagihan as $tagihan)
+            {
+                $sheet->setCellValue('A'. $no_cell, $no_data);
+                $sheet->setCellValue('B'. $no_cell, $tagihan->id_tagihan);
+                $sheet->setCellValue('C'. $no_cell, $tagihan->nisn);
+                $sheet->setCellValue('D'. $no_cell, $tagihan->nama_jenis_tagihan . ' ' . $tagihan->bulan . ' ' . $tagihan->tahun);
+                $sheet->setCellValue('E'. $no_cell, 'Rp. ' . number_format($tagihan->harga_tagihan));
+                $sheet->setCellValue('F'. $no_cell, $tagihan->jangka_waktu);
+                $sheet->setCellValue('G'. $no_cell, $tagihan->status_tagihan);
+
+                $no_cell++;
+                $no_data++;
+            }
+
+            $writer = new Xlsx($spreadsheet);
+            $writer->save('Data Tagihan Siswa.xlsx');
 
         return redirect()->route('data-tagihan.index');
     }
